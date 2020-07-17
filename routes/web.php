@@ -13,3 +13,4 @@
 
 Route::get('/', 'PostController@index')->name('index');
 Route::get('post/', 'PostController@index')->name('post.index');
+Route::get('post/create', 'PostController@create')->name('post.create');
