@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,7 +14,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::join('users', 'author_id', '=', 'users.id')
+                ->orderBy('posts.created_at', 'desc')
+                    ->paginate(4);
+        return view('posts.index', compact('posts'));
     }
 
     /**

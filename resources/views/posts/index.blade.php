@@ -31,11 +31,21 @@
     <div class="row">
         @foreach($posts as $post)
             <div class="col-6">
-                <div class="card-header">{{$post->short_title}}</div>
-                <div class="card-body">{{$post->descr}}</div>
+                <div class="card-header">
+                    <h2>{{$post->short_title}}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="card-img" style="background-image:
+                        url({{ $post->img ?? asset('img/defoult.jpg') }})">
+                    </div>
+                    <div class="card-author">Автор: {{$post->name}}</div>
+                    <a href="#" class="btn btn-outline-primary">Посмотреть пост</a>
+                </div>
             </div>
         @endforeach
     </div>
+
+    {{$posts->links()}}
 </div>
 </body>
 </html>
