@@ -35,7 +35,6 @@
     </div>
 
     @if(!isset($_GET['search']))
-    {{$posts->links()}}
+        {{$posts->links()}}
     @endif
 @endsection
-
