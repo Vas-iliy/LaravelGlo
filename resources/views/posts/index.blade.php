@@ -20,14 +20,31 @@
                 <a class="nav-link" href="/">Создать пост <span class="sr-only">(current)</span></a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Найти пост" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="{{route('post.index')}}">
+            <input class="form-control mr-sm-2" name="search" type="search" placeholder="Найти пост" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
         </form>
     </div>
 </nav>
 
 <div class="container">
+
+    @if(isset($_GET['search']))
+        @if(count($posts) > 0)
+            <h2>Результаты поиска по запросу <strong><?=$_GET['search']?></strong> </h2>
+            @if(count($posts) == 1)
+                <p class="lead">Всего найден {{count($posts)}} пост</p>
+            @elseif(1 < count($posts) && count($posts) < 5)
+                <p class="lead">Всего найдено {{count($posts)}} постa</p>
+            @else
+                <p class="lead">Всего найдено {{count($posts)}} постов</p>
+            @endif
+        @else
+            <h2>По запросу <strong><?=$_GET['search']?></strong> ничего не найдено</h2>
+            <a href="{{route('index')}}" class="btn btn-outline-primary">Отобразить все посты</a>
+        @endif
+    @endif
+
     <div class="row">
         @foreach($posts as $post)
             <div class="col-6">
@@ -45,7 +62,9 @@
         @endforeach
     </div>
 
+    @if(!isset($_GET['search']))
     {{$posts->links()}}
+    @endif
 </div>
 </body>
 </html>
