@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout', ['title' => "Пост №$post->post_id"])
 
 @section('content')
     <div class="row">
@@ -8,8 +8,8 @@
                 </div>
                 <div class="card-body">
                     <div class="card-img card-img__max" style="background-image:
-                        url({{ $post->img ?? asset('img/defoult.jpg') }})">
-                    </div>
+                        url({{ $post->img ?? asset('img/defoult.jpg') }})"></div>
+                    <div class="card-descr">Описание: {{$post->descr}}</div>
                     <div class="card-author">Автор: {{$post->name}}</div>
                     <div class="card-date">Пост создан: {{$post->created_at->diffForHumans()}}</div>
                     <div class="card-btn">
