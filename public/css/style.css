@@ -17,6 +17,18 @@ nav {
     background-repeat: no-repeat;
 }
 
-.card-img .card-author {
+.card-img .card-author, .card-date {
     margin-bottom: 10px;
+}
+
+.card-img__max {
+    height: 800px;
+}
+
+.card-btn {
+    display: flex;
+}
+
+.card-btn a {
+    margin-right: 10px;
 }
